@@ -1,0 +1,53 @@
+<aura:component 
+	controller="ContactsExplorerController" 
+	implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+<!-- CONTROLLER INIT -->
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+<!-- ATTRIBUTES -->
+	<aura:attribute name="recordId" type="Id" />
+	<aura:attribute name="wrappedContacts" type="ContactsExplorerController.ContactWrapper[]" />
+
+<div class="slds-grid slds-wrap">
+<!-- HEADER -->
+	<div class="slds-page-header slds-col slds-size--1-of-1">
+		<div class="slds-grid">
+			<div class="slds-col">
+				<div class="slds-text-heading--label">Contacts</div>
+				<div class="slds-text-heading--medium">Contacts Explorer</div>
+			</div>
+		</div>
+	</div>
+<!-- HEADER -->
+
+<!-- TABLE -->
+	<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-col slds-size--1-of-1">
+<!-- TABLE HEADER -->
+		<thead>
+			<tr class="slds-text-title--caps">
+				<th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+				<th scope="col"><div class="slds-truncate" title="Tasks">Open Tasks</div></th>
+				<th scope="col"><div class="slds-truncate" title="Tasks">Closed Tasks</div></th>
+			</tr>
+		</thead>
+<!-- TABLE BODY -->
+		<tbody>
+			<aura:iteration items="{!v.wrappedContacts}" var="wc">
+				<tr>
+					<th scope="row" data-label="Contact Name">
+						<!-- slight workaround to avoid the /c/ in lightning page url -->
+						<ui:outputURL value="{!'../' + wc.contact.Id}" label="{!wc.contact.Name}" class="uiOutputURL"/>
+					</th>
+					<td>
+						{!wc.openTasks}
+					</td>
+					<td>
+						{!wc.closedTasks}
+					</td>
+				</tr>
+			</aura:iteration>
+		</tbody>
+	</table>
+<!-- TABLE -->
+</div>
+
+</aura:component>

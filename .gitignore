@@ -1,0 +1,8 @@
+*.sublime-project
+*.sublime-settings
+*.sublime-workspace
+build/build.properties
+config
+*.orig
+src/classes/DoCreator
+SoapUI

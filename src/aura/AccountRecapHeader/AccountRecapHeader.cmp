@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable">
+	<aura:attribute name='msg' type='List' default="[]" />
+	
+	<h1>simple listing</h1>	
+	<p><ui:outputText value="{!v.msg[0]}"></ui:outputText></p>
+	<p><ui:outputText value="{!v.msg[1]}"></ui:outputText></p>
+	<p><ui:outputText value="{!v.msg[2]}"></ui:outputText></p>
+	<p><ui:outputText value="{!v.msg[3]}"></ui:outputText></p>
+
+	<br/>
+
+	<h1>iteration list</h1>
+	<aura:iteration items="{!v.msg}" var="m">
+		<p><ui:outputText value="{!m}"></ui:outputText></p>
+	</aura:iteration>
+
+	<br/>
+
+	<h1>conditionals</h1>
+	<aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+		<h2>desktop version!</h2>
+	<aura:set attribute="else">
+		<h2>non desktop version!</h2>
+	</aura:set>
+	</aura:if>
+
+</aura:component>
